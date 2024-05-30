@@ -1,4 +1,5 @@
 import './App.css';
+import Hobbies from './components/Hobbies/Hobbies';
 
 const App = () => {
   const name = 'Mark Genesis'
@@ -18,6 +19,7 @@ const App = () => {
           </>
         }
       </h1>
+      <Hobbies/>
     </div>
   );
 }

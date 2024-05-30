@@ -1,5 +1,6 @@
 import './App.css';
 import Hobbies from './components/Hobbies/Hobbies';
+import Person from './components/Person/Person';
 
 const App = () => {
   const name = 'Mark Genesis'
@@ -19,7 +20,11 @@ const App = () => {
           </>
         }
       </h1>
-      <Hobbies/>
+      <Person
+        name="John Doe"
+        age={25}
+        gender="Male"
+      />
     </div>
   );
 }

@@ -1,21 +1,11 @@
 import './App.css';
-import { useEffect } from 'react';
-import { searchMovies } from './services/omdbService';
+import Movies from './components/Movies/Movies';
 
 function App() {
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      await searchMovies('batman');
-    };
-
-    fetchMovies();
-  }, []);
-
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+      <Movies/>
+    </div>
   );
 }
 

@@ -6,5 +6,6 @@ export const searchMovies = async (searchTerm) => {
     console.log('searching for movies with term:', searchTerm);
     const response = await axios.get(`${OMDB_API_URL}&s=${searchTerm}`);
     const movieData = response.data.Search;
+    console.log('movieData:', movieData);
     return movieData
 }

@@ -6,20 +6,29 @@ import MovieCard from '../MovieCard/MovieCard';
 const Movies = () => {
     const [clickSearch, setClickSearch] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
+    const [initTerm, setInitTerm] = useState("Lego");
     const [movies, setMovies] = useState([]);
 
 
     useEffect(() => {
-
         fetchMovies();
     }, [clickSearch]);
 
     const fetchMovies = async () => {
+        if (clickSearch === 0) {
+            const response = await searchMovies(initTerm);
+            setMovies(response);
+            return;
+        }
+
         const response = await searchMovies(searchTerm);
         setMovies(response);
     };
 
     const clickSearchMovies = async () => {
+        if (searchTerm === "") {
+            return;
+        }
         fetchMovies();
         setClickSearch(clickSearch + 1);
     };

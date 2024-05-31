@@ -7,7 +7,13 @@ const State = () => {
 
     useEffect(() => {
         setCount(50);
-    }, []); 
+    }, []);
+
+    // If there's no dependency array, the effect will run after every render (or interaction with the component)
+
+    // If there is an empty dependency array, the effect will run only once after the initial render (like ngOnInit in Angular)
+
+    // If there is a dependency array with values, the effect will run after the initial render and after every render where the values in the dependency array have changed (like ngOnChanges in Angular)
 
     const increment = () => {
         setCount((prevCount) => prevCount + 1);

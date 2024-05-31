@@ -35,7 +35,7 @@ const Movies = () => {
 
     return (
         <div className="app">
-        <h1>MovieLand</h1>
+        <h1>FilmFolio</h1>
 
         <div className="search">
             <input

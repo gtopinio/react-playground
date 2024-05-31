@@ -4,6 +4,7 @@ import { searchMovies } from '../../services/omdbService';
 import MovieCard from '../MovieCard/MovieCard';
 
 const Movies = () => {
+    const [clickSearch, setClickSearch] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [movies, setMovies] = useState([]);
 
@@ -11,11 +12,16 @@ const Movies = () => {
     useEffect(() => {
 
         fetchMovies();
-    }, [searchTerm]);
+    }, [clickSearch]);
 
     const fetchMovies = async () => {
-        const response = await searchMovies('batman');
+        const response = await searchMovies(searchTerm);
         setMovies(response);
+    };
+
+    const clickSearchMovies = async () => {
+        fetchMovies();
+        setClickSearch(clickSearch + 1);
     };
 
     return (
@@ -31,7 +37,7 @@ const Movies = () => {
             <img
                 src={"/assets/search.svg"} // Already imports from public/assets
                 alt="search"
-                onClick={() => searchMovies(searchTerm)}
+                onClick={() => clickSearchMovies()}
             />
         </div>
 

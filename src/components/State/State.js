@@ -1,31 +1,41 @@
 import { useState, useEffect } from 'react';
 
 const State = () => {
-    const [count, setCount] = useState(0); // Needs to be here before useEffect to avoid error
+    const [hold, setHold] = useState(false);
+    const [count, setCount] = useState(0); 
+    const [intervalId, setIntervalId] = useState(null);
 
     useEffect(() => {
-        setCount((50));
-    }, []); // Called the dependency array, so this is now like ngOnInit in Angular
-
-    // If we put the count variable here, the component will re-render every time the count changes
+        setCount(50);
+    }, []); 
 
     const increment = () => {
-        setCount((prevCouunt) => {
-            return prevCouunt + 1;
-        });
+        setCount((prevCount) => prevCount + 1);
     }
 
     const decrement = () => {
-        setCount((prevCouunt) => {
-            return prevCouunt - 1;
-        });
+        setCount((prevCount) => prevCount - 1);
+    }
+
+    const handleMouseDown = (mode) => {
+        setHold(true);
+        if (mode === 'increment') {
+            setIntervalId(setInterval(increment, 200));
+        } else {
+            setIntervalId(setInterval(decrement, 200));
+        }
+    }
+
+    const handleMouseUp = () => {
+        setHold(false);
+        clearInterval(intervalId);
     }
 
     return (
         <div>
-            <button onClick={increment}>+</button>
+            <button onMouseDown={() => handleMouseDown('increment')} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}>+</button>
             <p>{count}</p>
-            <button onClick={decrement}>-</button>
+            <button onMouseDown={() => handleMouseDown('decrement')} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}>-</button>
         </div>
     );
 }
